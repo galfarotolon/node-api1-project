@@ -127,7 +127,7 @@ server.put('/api/users/:id', function (req, res) {
     } else {
         try {
 
-            res.status(200).json(users);
+            res.status(200).json(updateUser);
 
         }
         catch{
