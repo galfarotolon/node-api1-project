@@ -114,15 +114,21 @@ server.put('/api/users/:id', function (req, res) {
     const id = req.params.id;
     const findId = users.find(user => user.id == id)
 
+    const updateUser = req.body;
 
 
-    if (findId) {
-        res.status(200).json(findId);
-    } else if (!users.name || !users.bio) {
+
+    if (!updateUser.name || !updateUser.bio) {
         res.status(400).json({ errorMessage: "Please provide name and bio for the user." })
+    } else if (!findId) {
+
+        res.status(404).json({ errorMessage: "The user with the specified ID does not exist." });
+
     } else {
         try {
-            res.status(404).json({ errorMessage: "The user with the specified ID does not exist." });
+
+            res.status(200).json(users);
+
         }
         catch{
             res.status(500).json({ errorMessage: "The user information could not be modified." })
@@ -131,7 +137,6 @@ server.put('/api/users/:id', function (req, res) {
 
 });
 
-res.status(200).json(findId);
 
 
 const port = 5000;
