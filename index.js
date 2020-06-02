@@ -126,6 +126,8 @@ server.put('/api/users/:id', function (req, res) {
 
     } else {
         try {
+            findId.name = updateUser.name
+            findId.bio = updateUser.bio
 
             res.status(200).json(updateUser);
 
@@ -139,6 +141,6 @@ server.put('/api/users/:id', function (req, res) {
 
 
 
-const port = 5000;
+const port = 3000;
 
-server.listen(port, () => console.log('started on port 5000'))
+server.listen(port, () => console.log('started on port 3000'))
